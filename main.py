@@ -78,8 +78,8 @@ with tab1:
             rating = st.number_input("Rating", 0.0, 5.0, 4.0, 0.1, help="Từ 0.0 đến 5.0")
         
         with col2:
-            x = st.number_input("Vĩ độ (X)", value=10.0, format="%.2f")
-            y = st.number_input("Kinh độ (Y)", value=20.0, format="%.2f")
+            x = st.number_input("X", value=10.0, format="%.2f")
+            y = st.number_input("Y", value=20.0, format="%.2f")
         
         submitted = st.form_submit_button("Thêm tài xế", type="primary", use_container_width=True)
         
@@ -92,7 +92,7 @@ with tab1:
             else:
                 st.error("Vui lòng nhập tên tài xế!")
     
-    st.divider()
+    
     
     st.subheader("HIỂN THỊ TOP K TÀI XẾ")
 
@@ -132,11 +132,11 @@ with tab1:
             st.write(f"**Hiển thị {len(result)} tài xế (đã sắp xếp {sort_order.lower()}):**")
             import pandas as pd
             df_top = pd.DataFrame(result).rename(columns={
-                'ID': 'ID', 'Ten': 'Tên', 'Rating': 'Đánh giá', 'X': 'Vĩ độ', 'Y': 'Kinh độ'
+                'ID': 'ID', 'Ten': 'Tên', 'Rating': 'Đánh giá', 'X': 'X', 'Y': 'Y'
             })
             st.dataframe(df_top, use_container_width=True, hide_index=True)
 
-    st.divider()
+    
     
     # TÌM KIẾM TÀI XẾ 
     st.subheader("TÌM KIẾM TÀI XẾ")
@@ -164,14 +164,14 @@ with tab1:
             df_search = pd.DataFrame(results)
             df_search = df_search.rename(columns={
                 'ID': 'ID', 'Ten': 'Tên', 'Rating': 'Đánh giá',
-                'X': 'Vĩ độ', 'Y': 'Kinh độ',
+                'X': 'X', 'Y': 'Y',
             })
             
             st.dataframe(df_search, use_container_width=True, hide_index=True)
         else:
             st.warning(f"Không tìm thấy: **{search_keyword}**")
     
-    st.divider()
+    
     
     # CẬP NHẬT TÀI XẾ 
     st.subheader("CẬP NHẬT TÀI XẾ")
@@ -185,8 +185,8 @@ with tab1:
             new_rating = st.number_input("Rating mới", 0.0, 5.0, 4.0, 0.1)
         
         with col2:
-            new_x = st.number_input("Vĩ độ mới", value=10.8, format="%.4f")
-            new_y = st.number_input("Kinh độ mới", value=106.7, format="%.4f")
+            new_x = st.number_input("X mới", value=10.8, format="%.2f")
+            new_y = st.number_input("Y mới", value=16.7, format="%.2f")
             update_note = st.text_input("Ghi chú", placeholder="Lý do cập nhật...")
         
         submitted = st.form_submit_button("Cập nhật", type="primary", use_container_width=True)
@@ -206,7 +206,7 @@ with tab1:
             else:
                 st.error(f"Không tìm thấy tài xế ID: **{update_id}**")
     
-    st.divider()
+    
     
     # XÓA TÀI XẾ 
     st.subheader("XÓA TÀI XẾ")
@@ -245,7 +245,7 @@ with tab1:
         else:
             st.error(f"Không tìm thấy tài xế ID: **{delete_id}**")
     
-    st.divider()
+    
 
 # 2. Quản lý Khách hàng
 with tab2:
@@ -258,8 +258,8 @@ with tab2:
             name = st.text_input("Tên khách hàng", value="Nguyễn Thị B")
             location = st.text_input("Quận", value="Q1")
         with col2:
-            x = st.number_input("Vĩ độ (X)", value=10.80, format="%.2f")
-            y = st.number_input("Kinh độ (Y)", value=80.70, format="%.2f")
+            x = st.number_input("X", value=10.80, format="%.2f")
+            y = st.number_input("Y", value=8.70, format="%.2f")
 
         submitted = st.form_submit_button("Thêm khách hàng", type="primary", use_container_width=True)
 
@@ -272,7 +272,7 @@ with tab2:
             else:
                 st.error("Vui lòng nhập đầy đủ thông tin!")
 
-    st.divider()
+    
 
     # --- HIỂN THỊ TOP K KHÁCH HÀNG ---
     st.subheader("HIỂN THỊ TOP K KHÁCH HÀNG")
@@ -296,13 +296,13 @@ with tab2:
         if result:
             st.write(f"**Hiển thị {len(result)} khách hàng ở {position.lower()} danh sách:**")
             df_top = pd.DataFrame(result).rename(columns={
-                "ID": "ID", "Ten": "Tên", "Quan": "Quận", "X": "Vĩ độ", "Y": "Kinh độ"
+                "ID": "ID", "Ten": "Tên", "Quan": "Quận", "X": "X", "Y": "Y"
             })
             st.dataframe(df_top, use_container_width=True, hide_index=True)
         else:
             st.warning("Không có dữ liệu để hiển thị.")
 
-    st.divider()
+    
 
     # --- TÌM KIẾM KHÁCH HÀNG ---
     st.subheader("TÌM KIẾM KHÁCH HÀNG")
@@ -324,13 +324,13 @@ with tab2:
         if results:
             st.success(f"Tìm thấy **{len(results)}** kết quả:")
             df_search = pd.DataFrame(results).rename(columns={
-                "ID": "ID", "Ten": "Tên", "Quan": "Quận", "X": "Vĩ độ", "Y": "Kinh độ"
+                "ID": "ID", "Ten": "Tên", "Quan": "Quận", "X": "X", "Y": "Y"
             })
             st.dataframe(df_search, use_container_width=True, hide_index=True)
         else:
             st.warning(f"Không tìm thấy: **{search_keyword}**")
 
-    st.divider()
+    
 
     # --- CẬP NHẬT KHÁCH HÀNG ---
     st.subheader("CẬP NHẬT KHÁCH HÀNG")
@@ -342,8 +342,8 @@ with tab2:
             new_name = st.text_input("Tên mới", placeholder="Để trống nếu không đổi")
             new_location = st.text_input("Quận mới", placeholder="Để trống nếu không đổi")
         with col2:
-            new_x = st.number_input("Vĩ độ mới", value=10.8, format="%.2f")
-            new_y = st.number_input("Kinh độ mới", value=106.7, format="%.2f")
+            new_x = st.number_input("X mới", value=10.8, format="%.2f")
+            new_y = st.number_input("Y mới", value=106.7, format="%.2f")
             update_note = st.text_input("Ghi chú", placeholder="Lý do cập nhật...")
 
         submitted = st.form_submit_button("Cập nhật", type="primary", use_container_width=True)
@@ -363,7 +363,7 @@ with tab2:
             else:
                 st.error(f"Không tìm thấy khách hàng ID: **{update_id}**")
 
-    st.divider()
+    
 
     # --- XÓA KHÁCH HÀNG ---
     st.subheader("XÓA KHÁCH HÀNG")
@@ -396,7 +396,7 @@ with tab2:
         else:
             st.error(f"Không tìm thấy khách hàng ID: **{delete_id}**")
 
-    st.divider()
+    
 
     # --- LIỆT KÊ KHÁCH HÀNG THEO QUẬN ---
     st.subheader("LIỆT KÊ KHÁCH HÀNG THEO QUẬN")
@@ -414,7 +414,7 @@ with tab2:
         if results:
             st.write(f"**Tổng số khách hàng tại {location_search}: {total}**")
             df_location = pd.DataFrame(results).rename(columns={
-                "ID": "ID", "Ten": "Tên", "Quan": "Quận", "X": "Vĩ độ", "Y": "Kinh độ"
+                "ID": "ID", "Ten": "Tên", "Quan": "Quận", "X": "X", "Y": "Y"
             })
             st.dataframe(df_location, use_container_width=True, hide_index=True)
 
@@ -422,7 +422,7 @@ with tab2:
                 all_results, _ = customer_manager.list_by_location(location_search, limit=None)
                 st.write(f"**Tất cả khách hàng tại {location_search}:**")
                 df_all = pd.DataFrame(all_results).rename(columns={
-                    "ID": "ID", "Ten": "Tên", "Quan": "Quận", "X": "Vĩ độ", "Y": "Kinh độ"
+                    "ID": "ID", "Ten": "Tên", "Quan": "Quận", "X": "X", "Y": "Y"
                 })
                 st.dataframe(df_all, use_container_width=True, hide_index=True)
         else:
@@ -465,12 +465,10 @@ with tab3:
     else:
         st.info("Chưa có chuyến đi nào trong hệ thống.")
 
-    st.divider()
+    
 
 # 4. TÌM TÀI XẾ PHÙ HỢP
 with tab4:
-    st.header("TÌM TÀI XẾ PHÙ HỢP")
-
     # --- THÔNG TIN TÌM KIẾM ---
     st.subheader("THÔNG TIN TÌM KIẾM")
     col1, col2 = st.columns(2)
@@ -480,7 +478,7 @@ with tab4:
     with col2:
         top_k = st.number_input("Hiển thị Top K tài xế gần nhất", min_value=1, max_value=50, value=5, step=1)
 
-    st.divider()
+    
 
     # --- TIÊU CHÍ SẮP XẾP ---
     st.subheader("TIÊU CHÍ SẮP XẾP")
@@ -498,7 +496,7 @@ with tab4:
         "-experience"
     ]
 
-    st.divider()
+    
 
     # --- TÌM KIẾM TÀI XẾ ---
     if st.button("TÌM KIẾM TÀI XẾ", type="primary", use_container_width=True):
@@ -523,7 +521,7 @@ with tab4:
             customer = customer_manager.customers[customer_id]
             st.info(
                 f"Khách hàng: **{customer.name}** (ID: {customer.id}) – "
-                f"Vị trí: ({customer.x:.4f}, {customer.y:.4f})"
+                f"Vị trí: ({customer.x:.2f}, {customer.y:.2f})"
             )
 
             import pandas as pd
@@ -534,8 +532,8 @@ with tab4:
                 "Rating": "Đánh giá",
                 "Trips": "Số chuyến",
                 "Experience": "Kinh nghiệm (năm)",
-                "X": "Vĩ độ (X)",
-                "Y": "Kinh độ (Y)"
+                "X": "X",
+                "Y": "Y"
             })
             st.dataframe(df_results, use_container_width=True, hide_index=True)
 
@@ -565,7 +563,7 @@ with tab5:
                 st.write(f"Trạng thái: {booking['status']}")
                 st.rerun()
 
-    st.divider()
+    
 
     # --- QUẢN LÝ CHUYẾN ĐI ---
     st.subheader("QUẢN LÝ CHUYẾN ĐI")
@@ -592,7 +590,7 @@ with tab5:
                 st.warning(f"Đã hủy {n} chuyến.")
                 st.rerun()
 
-    st.divider()
+    
 
     # --- LỊCH SỬ ---
     st.subheader("LỊCH SỬ ĐẶT XE")
@@ -624,7 +622,7 @@ with tab6:
         if err: st.error(err)
         else: st.success(f"Tạo yêu cầu #{req['id']} thành công!")
 
-    st.divider()
+    
 
     # --- GHÉP CẶP TỰ ĐỘNG ---
     st.subheader("GHÉP CẶP TỰ ĐỘNG")
@@ -638,7 +636,7 @@ with tab6:
             import pandas as pd
             st.dataframe(pd.DataFrame(results), use_container_width=True, hide_index=True)
 
-    st.divider()
+    
 
     # --- DANH SÁCH YÊU CẦU ---
     st.subheader("DANH SÁCH YÊU CẦU")

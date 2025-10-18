@@ -11,19 +11,19 @@ class ManageSessionState:
         # Quản lý tài xế
         if 'driver_manager' not in st.session_state:
             driver_manager = DriverManagementSystem()
-            driver_manager.load_from_file("drivers.csv")
+            driver_manager.load_from_file("data\drivers.csv")
             st.session_state.driver_manager = driver_manager
 
         # Quản lý khách hàng
         if 'customer_manager' not in st.session_state:
             customer_manager = CustomerManagementSystem()
-            customer_manager.load_from_file("customers.csv")
+            customer_manager.load_from_file("data\customers.csv")
             st.session_state.customer_manager = customer_manager
 
         # Quản lý chuyến đi
         if 'ride_manager' not in st.session_state:
             ride_manager = RideManagementSystem()
-            ride_manager.load_from_file("rides.csv")
+            ride_manager.load_from_file("data\\rides.csv")
             st.session_state.ride_manager = ride_manager
 
         # Lịch sử undo
